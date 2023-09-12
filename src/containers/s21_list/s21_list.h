@@ -2,10 +2,12 @@
 #include <iostream>
 #include <limits>
 
-#define MAX_SIZE 1
-
 #if defined(linux) || defined(__linux)
 #define MAX_SIZE 2
+#endif
+
+#if __APPLE__
+#define MAX_SIZE 1
 #endif
 
 using namespace std;
