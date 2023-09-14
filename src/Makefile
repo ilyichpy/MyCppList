@@ -27,7 +27,7 @@ style:
 	clang-format -style=google -i $(TESTS) $(SOURCE) $(HEADERS)
 
 test: clean
-	$(GXX) $(SYSTEM) $(TESTS) -lstdc++ $(ADD_LIB) -o $(EXECUTABLE) $(GTEST)
+	$(GXX) $(SYSTEM) $(TESTS) tests/main.cc -lstdc++ $(ADD_LIB) -o $(EXECUTABLE) $(GTEST)
 	./$(EXECUTABLE)
 
 mem: test

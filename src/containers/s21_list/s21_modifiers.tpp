@@ -1,4 +1,5 @@
 namespace s21 {
+  
 template <typename value_type>
 list<value_type>::list(size_type n) : head_(nullptr), tail_(nullptr), size_(n) {
   for (size_type i = 0; i < n; ++i) {
@@ -17,14 +18,13 @@ list<value_type>::list(std::initializer_list<value_type> const& items)
 template <typename value_type>
 list<value_type>::list(const list& l)
     : head_(nullptr), tail_(nullptr), size_(0) {
-  size_ = l.size_;
   Node<value_type>* tmp = l.head_;
-
   for (size_type i = 0; i < l.size_; ++i) {
     push_back(tmp->data);
     tmp = tmp->pNext;
   }
 }
+
 template <typename value_type>
 list<value_type>::list(list&& l)
     : head_(l.head_), tail_(l.tail_), size_(l.size_) {
@@ -35,7 +35,6 @@ list<value_type>::list(list&& l)
 
 template <typename value_type>
 list<value_type>::~list() {
-  // clear();
   size_type size_this = size_;
   for (size_type i = 0; i < size_this; ++i) {
     pop_back();
@@ -44,6 +43,7 @@ list<value_type>::~list() {
 
 template <typename value_type>
 void list<value_type>::operator=(list&& l) {
+  clear();
   while (l.head_ != nullptr) {
     push_back(l.head_->data);
     l.head_ = l.head_->pNext;
@@ -54,7 +54,6 @@ void list<value_type>::operator=(list&& l) {
 template <typename value_type>
 void list<value_type>::operator=(const list& l) {
   clear();
-  size_ = l.size_;
   Node<value_type>* tmp = l.head_;
 
   for (size_type i = 0; i < l.size_; ++i) {
